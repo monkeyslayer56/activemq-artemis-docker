@@ -123,7 +123,7 @@ COPY assets/jmx-exporter-config.yaml /opt/jmx-exporter/etc/
 #ARG BASE_IMAGE
 #ENV BASE_IMAGE=alpine:latest
 # hadolint ignore=DL3006
-FROM openjdk:16-jdk-alpine3.12
+FROM alpine:latest
 LABEL maintainer="Victor Romero <victor.romero@gmail.com>"
 ENV ACTIVEMQ_ARTEMIS_VERSION=2.16.0
 
@@ -138,7 +138,8 @@ RUN apk add --no-cache \
   jq \
   dumb-init \
   sed \
-  gettext
+  gettext \
+  openjdk8-jre
 
 COPY --from=builder "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}" "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}"
 COPY --from=builder "/var/lib/artemis" "/var/lib/artemis"
