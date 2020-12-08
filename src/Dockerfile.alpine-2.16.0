@@ -131,15 +131,14 @@ ENV ACTIVEMQ_ARTEMIS_VERSION=2.16.0
 # add user and group for artemis
 RUN addgroup -g 1000 -S artemis && adduser -u 1000 -S -G artemis artemis
 
-# Sadly this line is likely to fail every so often, see: https://medium.com/@stschindler/the-problem-with-docker-and-alpines-package-pinning-18346593e891
-# Still versions are pinned to maintain some small level of https://reproducible-builds.org/
+
 RUN apk add --no-cache \
-  libaio=0.3.111-r0 \
-  xmlstarlet=1.6.1-r0 \
-  jq=1.6-r0 \
-  dumb-init=1.2.2-r1 \
-  sed=4.5-r0 \
-  gettext=0.19.8.1-r4
+  libaio \
+  xmlstarlet \
+  jq \
+  dumb-init \
+  sed \
+  gettext
 
 COPY --from=builder "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}" "/opt/apache-artemis-${ACTIVEMQ_ARTEMIS_VERSION}"
 COPY --from=builder "/var/lib/artemis" "/var/lib/artemis"
