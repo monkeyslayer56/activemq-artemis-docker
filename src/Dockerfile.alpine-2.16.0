@@ -4,7 +4,7 @@
 ## Build Image                                           #
 ##########################################################
 # ARG BASE_IMAGE
-ENV BASE_IMAGE=alpine
+ENV BASE_IMAGE=alpine:latest
 FROM openjdk:8u171-jdk-stretch as builder
 LABEL maintainer="Victor Romero <victor.romero@gmail.com>"
 
@@ -121,12 +121,12 @@ COPY assets/jmx-exporter-config.yaml /opt/jmx-exporter/etc/
 ## Run Image                                             #
 ##########################################################
 #ARG BASE_IMAGE
-ENV BASE_IMAGE=alpine
+ENV BASE_IMAGE=alpine:latest
 # hadolint ignore=DL3006
 FROM $BASE_IMAGE
 LABEL maintainer="Victor Romero <victor.romero@gmail.com>"
-ARG ACTIVEMQ_ARTEMIS_VERSION
-ENV ACTIVEMQ_ARTEMIS_VERSION=$ACTIVEMQ_ARTEMIS_VERSION
+ENV ACTIVEMQ_ARTEMIS_VERSION=2.16.0
+
 
 # add user and group for artemis
 RUN addgroup -g 1000 -S artemis && adduser -u 1000 -S -G artemis artemis
