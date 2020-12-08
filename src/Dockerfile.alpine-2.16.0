@@ -3,8 +3,8 @@
 ##########################################################
 ## Build Image                                           #
 ##########################################################
-# ARG BASE_IMAGE
-ENV BASE_IMAGE=alpine:latest
+ARG BASE_IMAGE
+# BASE_IMAGE=alpine:latest
 FROM openjdk:8u171-jdk-stretch as builder
 LABEL maintainer="Victor Romero <victor.romero@gmail.com>"
 
@@ -121,9 +121,9 @@ COPY assets/jmx-exporter-config.yaml /opt/jmx-exporter/etc/
 ## Run Image                                             #
 ##########################################################
 #ARG BASE_IMAGE
-ENV BASE_IMAGE=alpine:latest
+#ENV BASE_IMAGE=alpine:latest
 # hadolint ignore=DL3006
-FROM $BASE_IMAGE
+FROM alpine:latest
 LABEL maintainer="Victor Romero <victor.romero@gmail.com>"
 ENV ACTIVEMQ_ARTEMIS_VERSION=2.16.0
 
