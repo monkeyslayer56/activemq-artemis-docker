@@ -123,7 +123,7 @@ COPY assets/jmx-exporter-config.yaml /opt/jmx-exporter/etc/
 #ARG BASE_IMAGE
 #ENV BASE_IMAGE=alpine:latest
 # hadolint ignore=DL3006
-FROM alpine:latest
+FROM openjdk:16-jdk-alpine3.12
 LABEL maintainer="Victor Romero <victor.romero@gmail.com>"
 ENV ACTIVEMQ_ARTEMIS_VERSION=2.16.0
 
