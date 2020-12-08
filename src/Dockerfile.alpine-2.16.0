@@ -3,7 +3,8 @@
 ##########################################################
 ## Build Image                                           #
 ##########################################################
-ARG BASE_IMAGE
+# ARG BASE_IMAGE
+ENV BASE_IMAGE=alpine
 FROM openjdk:8u171-jdk-stretch as builder
 LABEL maintainer="Victor Romero <victor.romero@gmail.com>"
 
